@@ -462,15 +462,26 @@ function openDescription(
     id,
     name,
     description,
-    userName
+    userName,
+    image
 ) {
-
     const descriptionModal =
         document.createElement("div");
 
     descriptionModal.className =
         "description-modal";
 
+    const imageHTML = image
+        ? `
+            <div class="description-image">
+                <img
+                    src="${escapeAttribute(image)}"
+                    alt="${escapeAttribute(name || "")}"
+                    onerror="imageError(this)"
+                >
+            </div>
+        `
+        : "";
 
     descriptionModal.innerHTML = `
         <div class="description-modal-content">
@@ -485,6 +496,8 @@ function openDescription(
             >
                 ×
             </button>
+
+            ${imageHTML}
 
             <h2>
                 ${escapeHTML(name)}
@@ -506,28 +519,22 @@ function openDescription(
         </div>
     `;
 
-
     document.body.appendChild(
         descriptionModal
     );
 
-
     descriptionModal.addEventListener(
         "click",
         (event) => {
-
             if (
                 event.target ===
                 descriptionModal
             ) {
                 descriptionModal.remove();
             }
-
         }
     );
-
 }
-
 
 // =========================
 // СОКРАЩЕНИЕ ТЕКСТА
