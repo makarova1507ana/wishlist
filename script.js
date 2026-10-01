@@ -684,12 +684,13 @@ function renderWishlist(items) {
                 <h3
                     class="card-title"
                     onclick="
-                        openDescription(
-                            '${escapeAttribute(item.id)}',
-                            '${escapeAttribute(item.name || "")}',
-                            '${escapeAttribute(item.description || "")}',
-                            '${escapeAttribute(userName)}'
-                        )
+                    openDescription(
+    '${escapeAttribute(item.id)}',
+    '${escapeAttribute(item.name || "")}',
+    '${escapeAttribute(item.description || "")}',
+    '${escapeAttribute(userName)}',
+    '${escapeAttribute(item.image || "")}'
+)
                     "
                 >
                     ${escapeHTML(shortName)}
@@ -704,12 +705,13 @@ function renderWishlist(items) {
                 <p
                     class="card-description"
                     onclick="
-                        openDescription(
-                            '${escapeAttribute(item.id)}',
-                            '${escapeAttribute(item.name || "")}',
-                            '${escapeAttribute(item.description || "")}',
-                            '${escapeAttribute(userName)}'
-                        )
+                  openDescription(
+    '${escapeAttribute(item.id)}',
+    '${escapeAttribute(item.name || "")}',
+    '${escapeAttribute(item.description || "")}',
+    '${escapeAttribute(userName)}',
+    '${escapeAttribute(item.image || "")}'
+)
                     "
                 >
                     ${escapeHTML(shortDescription)}
