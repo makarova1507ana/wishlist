@@ -49,7 +49,10 @@ const modalTitle =
 
 const userInput =
     document.getElementById("itemUser");
+const filterUser =
+    document.getElementById("filterUser");
 
+let allItems = [];
 
 let editingId = null;
 
@@ -170,7 +173,24 @@ function imageError(image) {
 // =========================
 // ЗАГРУЗКА WISHLIST
 // =========================
+function applyFilter() {
+    const selectedUser =
+        filterUser.value;
 
+    if (selectedUser === "all") {
+        renderWishlist(allItems);
+        return;
+    }
+
+    const filteredItems =
+        allItems.filter(
+            (item) =>
+                (item.user_name || "Настя")
+                === selectedUser
+        );
+
+    renderWishlist(filteredItems);
+}
 async function loadWishlist() {
 
     wishlistContainer.innerHTML = `
@@ -204,7 +224,9 @@ async function loadWishlist() {
     }
 
 
-    renderWishlist(data || []);
+    allItems = data || [];
+
+applyFilter();
 
 }
 
@@ -774,5 +796,8 @@ function escapeAttribute(text) {
 // =========================
 // ЗАПУСК
 // =========================
-
+filterUser.addEventListener(
+    "change",
+    applyFilter
+);
 loadWishlist();
